@@ -56,9 +56,8 @@ class SmtpSender:
         .ExternalClass {
             width: 100%;
         }
-        /* Forces Outlook.com to display emails at full width */
-        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
-        /* Forces Outlook.com to display normal line spacing, here is more on that: http://www.emailonacid.com/forum/viewthread/43/ */
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass 
+        div { line-height: 100%; }
 
         body {
             -webkit-text-size-adjust: none;
@@ -87,9 +86,6 @@ class SmtpSender:
             vertical-align: top;
             padding: 2px;
         }
-        /*This resolves the Outlook 07, 10, and Gmail td padding issue. Heres more info: http://www.ianhoar.com/2008/04/29/outlook-2007-borders-and-1px-padding-on-table-cells http://www.campaignmonitor.com/blog/post/3392/1px-borders-padding-on-table-cells-in-outlook-07 */
-        /****** END BUG FIXES ********/
-        /****** RESETTING DEFAULTS, IT IS BEST TO OVERWRITE THESE STYLES INLINE ********/
 
         body,
         #body_style {
@@ -99,7 +95,6 @@ class SmtpSender:
             font-family: Calibri, Arial, Helvetica, sans-serif;
             font-size: 12px;
         }
-        /*The "body" is defined here for Yahoo Beta because it does not support your body tag. Instead, it will create a wrapper div around your email and that div will inherit your embedded body styles. The "#body_style" is defined for AOL because it does not support your embedded body definition nor your body tag, we will use this class in our wrapper div. The "min-height" attribute is used for AOL so that your background does not get cut off if your email is short. We are using universal styles for Outlook 2007, including them in the wrapper will not effect nested tables*/
 
         html,
         body {
@@ -151,7 +146,6 @@ class SmtpSender:
             color: #2A5DB0;
             text-decoration: underline;
         }
-        /* This is the embedded CSS link color for Gmail. This will overwrite Outlook.com and Yahoo Beta's embedded link colors and make it consistent with Gmail. You must overwrite this color inline */
 
         img {
             display: block;
@@ -165,7 +159,6 @@ class SmtpSender:
         a img {
             border: 0 none;
         }
-        /** Some email clients add space below images by default, which is problematic if you’re tiling images. Be aware that, by setting images to block-level elements, you can’t align them without resorting to the float or position CSS properties, which aren’t widely supported */
 
         small {
             font-size: 11px;
@@ -256,11 +249,11 @@ class SmtpSender:
             elif i == 6:
                 self.smtp_server = args[6]
 
-        if not((to_list is None) or (len(to_list) == 0)):
+        if not ((to_list is None) or (len(to_list) == 0)):
             self._recipients = to_list.copy()
             self._to_addresses = to_list.copy()
 
-        if not((bcc_list is None) or (len(bcc_list) == 0)):
+        if not ((bcc_list is None) or (len(bcc_list) == 0)):
             if self._recipients is None:
                 self._recipients = bcc_list.copy()
             else:
@@ -413,7 +406,7 @@ def send_email_message(to_addresses: Union[str, List[str]],
     msg.to_addresses = to_list
 
     # Cc line addresses are optional
-    if not(cc_addresses is None):
+    if not (cc_addresses is None):
         if type(cc_addresses) is str:
             cc_list = cc_addresses.split(',')
         elif type(cc_addresses) is list:
@@ -423,7 +416,7 @@ def send_email_message(to_addresses: Union[str, List[str]],
         msg.cc_addresses = cc_list
 
     # BCC addresses are optional
-    if not(bcc_addresses is None):
+    if not (bcc_addresses is None):
         if type(bcc_addresses) is str:
             bcc_list = bcc_addresses.split(',')
         elif type(bcc_addresses) is list:
